@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.chalwk.longneck.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "longneck.refmap.json",
+  "client": [
+    "BipedEntityModelMixin",
+    "PlayerEntityModelMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

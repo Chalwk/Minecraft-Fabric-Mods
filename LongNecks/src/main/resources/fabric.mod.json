@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "longneck",
+  "version": "${version}",
+  "name": "Long Neck Mod",
+  "description": "Adds a long neck to your character!",
+  "authors": [
+    "chalwk"
+  ],
+  "contact": {
+    "homepage": "https://chalwk.com",
+    "sources": "https://github.com/chalwk/longneck-mod"
+  },
+  "license": "MIT",
+  "icon": "assets/longneck/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.chalwk.longneck.LongNeckMod"
+    ]
+  },
+  "mixins": [
+    "longneck.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "minecraft": "1.20.1",
+    "java": ">=17",
+    "fabric-api": "*"
+  }
+}
