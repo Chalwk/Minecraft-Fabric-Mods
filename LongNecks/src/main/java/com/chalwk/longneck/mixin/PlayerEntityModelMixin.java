@@ -9,19 +9,20 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerEntityModel.class)
-public class PlayerEntityModelMixin<T extends LivingEntity> {
+public class PlayerEntityModelMixin {
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void adjustNeckLength(ModelPart root, boolean thinArms, CallbackInfo ci) {
-        PlayerEntityModel<?> model = (PlayerEntityModel<?>) (Object) this;
-        ModelPart head = model.head;
+        PlayerEntityModel model = (PlayerEntityModel) (Object) this;
+        // Use the getHead() method which should be available
+        ModelPart head = model.getHead();
         head.setPivot(0.0F, -12.0F, 0.0F);
     }
 
-    @Inject(method = "setAngles(Lnet/minecraft/entity/LivingEntity;FFFFF)V", at = @At("TAIL"))
-    private void adjustLongNeckAngles(T livingEntity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch, CallbackInfo ci) {
-        PlayerEntityModel<?> model = (PlayerEntityModel<?>) (Object) this;
-        ModelPart head = model.head;
+    @Inject(method = "setAngles*", at = @At("TAIL"))
+    private void adjustLongNeckAngles(LivingEntity livingEntity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch, CallbackInfo ci) {
+        PlayerEntityModel model = (PlayerEntityModel) (Object) this;
+        ModelPart head = model.getHead();
 
         float smoothFactor = 0.6F;
         head.pitch = headPitch * 0.017453292F * smoothFactor;
