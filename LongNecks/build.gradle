@@ -26,6 +26,12 @@ processResources {
     }
 }
 
+loom {
+    mixin {
+        defaultRefmapName = "longneck.refmap.json"
+    }
+}
+
 def targetJavaVersion = 17
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = "UTF-8"

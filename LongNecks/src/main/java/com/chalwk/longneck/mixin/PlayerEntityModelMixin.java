@@ -14,15 +14,15 @@ public class PlayerEntityModelMixin {
     @Inject(method = "<init>", at = @At("TAIL"))
     private void adjustNeckLength(ModelPart root, boolean thinArms, CallbackInfo ci) {
         PlayerEntityModel model = (PlayerEntityModel) (Object) this;
-        // Use the getHead() method which should be available
-        ModelPart head = model.getHead();
+        // Access the head part directly through the field
+        ModelPart head = model.head;
         head.setPivot(0.0F, -12.0F, 0.0F);
     }
 
     @Inject(method = "setAngles*", at = @At("TAIL"))
     private void adjustLongNeckAngles(LivingEntity livingEntity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch, CallbackInfo ci) {
         PlayerEntityModel model = (PlayerEntityModel) (Object) this;
-        ModelPart head = model.getHead();
+        ModelPart head = model.head;
 
         float smoothFactor = 0.6F;
         head.pitch = headPitch * 0.017453292F * smoothFactor;
